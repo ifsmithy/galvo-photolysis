@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" font-family="Helvetica, Arial, sans-serif" font-size="13">
+  <title>Rig wiring</title>
+  <desc>NI USB-6001 wiring to the Thorlabs GVS002 galvo drivers and the two diode lasers, as traced on 2026-10-09.</desc>
+  <rect width="900" height="560" fill="#ffffff"/>
+
+  <!-- NI USB-6001 -->
+  <rect x="30" y="40" width="220" height="440" rx="10" fill="#f1efe8" stroke="#5f5e5a"/>
+  <text x="140" y="66" text-anchor="middle" font-weight="bold">NI USB-6001</text>
+  <text x="140" y="84" text-anchor="middle" fill="#5f5e5a" font-size="12">"Dev4" on the rig PC</text>
+  <g font-size="12">
+    <rect x="50" y="98" width="180" height="26" rx="4" fill="#fff" stroke="#888780"/><text x="140" y="115" text-anchor="middle">AO 0</text>
+    <rect x="50" y="198" width="180" height="26" rx="4" fill="#fff" stroke="#888780"/><text x="140" y="215" text-anchor="middle">AO 1</text>
+    <rect x="50" y="248" width="180" height="26" rx="4" fill="#fff" stroke="#888780"/><text x="140" y="265" text-anchor="middle">AO GND, AI GND</text>
+    <rect x="50" y="318" width="180" height="26" rx="4" fill="#fff" stroke="#888780"/><text x="140" y="335" text-anchor="middle">P0.0</text>
+    <rect x="50" y="368" width="180" height="26" rx="4" fill="#fff" stroke="#888780"/><text x="140" y="385" text-anchor="middle">P0.2</text>
+    <rect x="50" y="418" width="180" height="26" rx="4" fill="#fff" stroke="#888780"/><text x="140" y="435" text-anchor="middle">D GND</text>
+  </g>
+
+  <!-- Galvo drivers -->
+  <rect x="360" y="80" width="200" height="66" rx="8" fill="#e1f5ee" stroke="#0f6e56"/>
+  <text x="460" y="104" text-anchor="middle" font-weight="bold" fill="#085041">Galvo driver 1</text>
+  <text x="460" y="124" text-anchor="middle" font-size="12" fill="#0f6e56">J7 pin 1 = command +</text>
+  <text x="460" y="139" text-anchor="middle" font-size="11" fill="#0f6e56">JP7 open: 1 V/°</text>
+  <rect x="360" y="180" width="200" height="66" rx="8" fill="#e1f5ee" stroke="#0f6e56"/>
+  <text x="460" y="204" text-anchor="middle" font-weight="bold" fill="#085041">Galvo driver 2</text>
+  <text x="460" y="224" text-anchor="middle" font-size="12" fill="#0f6e56">J7 pin 1 = command +</text>
+  <text x="460" y="239" text-anchor="middle" font-size="11" fill="#0f6e56">JP7 open: 1 V/°</text>
+
+  <!-- Scanner -->
+  <rect x="660" y="80" width="200" height="166" rx="10" fill="#eeedfe" stroke="#534ab7"/>
+  <text x="760" y="104" text-anchor="middle" font-weight="bold" fill="#3c3489">Thorlabs GVS002</text>
+  <rect x="690" y="120" width="140" height="34" rx="6" fill="#fff" stroke="#7f77dd"/>
+  <text x="760" y="142" text-anchor="middle" fill="#3c3489">Y galvo: +V = down</text>
+  <rect x="690" y="196" width="140" height="34" rx="6" fill="#fff" stroke="#7f77dd"/>
+  <text x="760" y="218" text-anchor="middle" fill="#3c3489">X galvo: +V = right</text>
+
+  <!-- Galvo power -->
+  <rect x="360" y="268" width="200" height="40" rx="8" fill="#f1efe8" stroke="#888780"/>
+  <text x="460" y="286" text-anchor="middle" font-weight="bold">GPS011</text>
+  <text x="460" y="301" text-anchor="middle" font-size="11" fill="#5f5e5a">±15 V to both drivers (J10)</text>
+
+  <!-- Lasers -->
+  <rect x="660" y="300" width="200" height="56" rx="8" fill="#e6f1fb" stroke="#185fa5"/>
+  <text x="760" y="323" text-anchor="middle" font-weight="bold" fill="#0c447c">445 nm module (aim)</text>
+  <text x="760" y="342" text-anchor="middle" font-size="12" fill="#185fa5">red +12 V, black GND, yellow TTL</text>
+  <rect x="360" y="360" width="200" height="56" rx="8" fill="#eeedfe" stroke="#534ab7"/>
+  <text x="460" y="383" text-anchor="middle" font-weight="bold" fill="#3c3489">405 nm driver board</text>
+  <text x="460" y="402" text-anchor="middle" font-size="12" fill="#534ab7">TTL wire hand-soldered</text>
+  <rect x="660" y="372" width="200" height="44" rx="8" fill="#eeedfe" stroke="#534ab7"/>
+  <text x="760" y="399" text-anchor="middle" font-weight="bold" fill="#3c3489">405 nm head + fan</text>
+
+  <!-- 12 V supply -->
+  <rect x="360" y="456" width="200" height="56" rx="8" fill="#faeeda" stroke="#854f0b"/>
+  <text x="460" y="479" text-anchor="middle" font-weight="bold" fill="#633806">B&amp;K 1670, 12 V</text>
+  <text x="460" y="498" text-anchor="middle" font-size="12" fill="#854f0b">(−) shared with D GND</text>
+
+  <!-- Wires -->
+  <g fill="none" stroke-width="1.6">
+    <path d="M230 111 L358 111" stroke="#1d9e75"/>
+    <path d="M230 211 L358 211" stroke="#1d9e75"/>
+    <path d="M230 261 L300 261 L300 136 L358 136" stroke="#888780" stroke-dasharray="5 4"/>
+    <path d="M300 236 L358 236" stroke="#888780" stroke-dasharray="5 4"/>
+    <path d="M560 113 L610 113 L610 137 L688 137" stroke="#534ab7"/>
+    <path d="M560 213 L688 213" stroke="#534ab7"/>
+    <path d="M460 268 L460 248" stroke="#888780"/>
+    <path d="M230 331 L658 331" stroke="#ba7517"/>
+    <path d="M230 381 L358 381" stroke="#ba7517"/>
+    <path d="M560 394 L658 394" stroke="#534ab7"/>
+    <path d="M230 431 L320 431 L320 490 L358 490" stroke="#5f5e5a"/>
+    <path d="M460 456 L460 418" stroke="#854f0b"/>
+    <path d="M560 484 L880 484 L880 328 L862 328" stroke="#854f0b"/>
+  </g>
+  <g font-size="11" fill="#5f5e5a">
+    <text x="140" y="292" text-anchor="middle" font-size="10">pin 8 ← AO GND, pin 2 ← AI GND</text>
+    <text x="400" y="326">TTL, high = on</text>
+    <text x="262" y="374">TTL, high = on</text>
+    <text x="40" y="540">Traced by hand 2026-10-09. Directions are as seen on a wall; the camera image may be mirrored. Details: HARDWARE.md</text>
+  </g>
+</svg>

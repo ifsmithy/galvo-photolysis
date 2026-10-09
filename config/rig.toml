@@ -1,0 +1,50 @@
+# Rig configuration: the ONLY place facts about the physical rig live.
+# Every section has `verified`. false = not yet measured on the real rig (see HARDWARE.md).
+# The simulator reads this same file, so real numbers here make the simulator honest.
+
+[daq]
+device = "Dev4"            # name NI MAX gave the USB-6001 on the rig PC (2026-10-09); Brett's was Dev1
+ao_channels = ["ao0", "ao1"]
+ao_min_v = -10.0
+ao_max_v = 10.0
+sample_rate_hz = 5000.0     # USB-6001 maximum, hardware-timed (datasheet)
+do_port = "port0"
+do_line_count = 8
+verified = true             # from datasheet + original source
+
+[axes]
+# Maps logical galvo volts (gx, gy) -> channel volts (ao0, ao1).
+# Logical convention: +gx moves the spot RIGHT in the image, +gy moves it DOWN.
+# Row 1 is ao0, row 2 is ao1.
+# Wall test 2026-10-09 (facing the wall): +ao0 moves the spot DOWN, +ao1 moves it RIGHT,
+# so (ao0, ao1) = (gy, +gx). The original software used (gy, -gx); the x sign may differ
+# because the camera image can be mirrored relative to the wall. Calibration absorbs any
+# rotation or flip, so this only affects the uncalibrated view.
+matrix = [[0.0, 1.0], [1.0, 0.0]]
+verified = false            # wall-measured; confirm against the camera image on the microscope
+
+[galvo]
+settling_time_s = 0.001     # time to settle within 1% after a jump. PLACEHOLDER.
+verified = false            # MEASURE
+
+# Lasers: generic diode modules with TTL driver boards (see HARDWARE.md).
+# `verified` = the digital line was traced by hand (2026-10-09).
+[[lasers]]
+name = "445 nm"
+role = "aim"                # "aim" | "uncage" | "unknown". Believed to be the guide laser.
+wavelength_nm = 445         # stamped on the module
+do_line = 0                 # P0.0, traced
+verified = true
+
+[[lasers]]
+name = "405 nm"
+role = "uncage"
+wavelength_nm = 405         # believed; sticker not yet checked
+do_line = 2                 # P0.2, traced (Brett's saved setting of line 1 was wrong). P0.1 is unused.
+verified = true
+
+[sync]
+trigger_out_line = -1       # port0 line pulsed at exposure start for the camera; -1 = not wired
+trigger_out_pulse_s = 0.001
+trigger_in_line = ""        # e.g. "port2/line0" (PFI0); "" = not wired
+verified = false

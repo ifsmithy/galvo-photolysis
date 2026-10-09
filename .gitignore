@@ -1,0 +1,28 @@
+# Original GalvoController source: read-only reference material, not part of this codebase
+reference/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Local output
+demo_output/
+*.jsonl
+.DS_Store
+
+# Local photos (not part of the code)
+galvorebuild/
+lightsheet photos/
+
+# Private uv copy installed by setup.bat
+.tools/
+
+# Local preview of the public README
+preview/

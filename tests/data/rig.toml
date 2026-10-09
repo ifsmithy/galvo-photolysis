@@ -1,0 +1,44 @@
+# TEST FIXTURE: a frozen copy of the rig config used by the tests, so that recording real
+# rig facts in config/rig.toml never changes test behaviour. Not the real rig.
+
+
+[daq]
+device = "Dev1"
+ao_channels = ["ao0", "ao1"]
+ao_min_v = -10.0
+ao_max_v = 10.0
+sample_rate_hz = 5000.0     # USB-6001 maximum, hardware-timed (datasheet)
+do_port = "port0"
+do_line_count = 8
+verified = true             # from datasheet + original source
+
+[axes]
+# Maps logical galvo volts (gx, gy) -> channel volts (ao0, ao1).
+# Logical convention: +gx moves the spot RIGHT in the image, +gy moves it DOWN.
+# Row 1 is ao0, row 2 is ao1. Default is the original software's (ao0, ao1) = (gy, -gx).
+matrix = [[0.0, 1.0], [-1.0, 0.0]]
+verified = false            # MEASURE: which way does the spot move for +ao0 and +ao1?
+
+[galvo]
+settling_time_s = 0.001     # time to settle within 1% after a jump. PLACEHOLDER.
+verified = false            # MEASURE
+
+[[lasers]]
+name = "Laser 1"
+role = "unknown"            # "aim" | "uncage" | "unknown". Believed: one is 488 aim, one 405 uncage.
+wavelength_nm = 0           # 0 = unknown
+do_line = 0
+verified = false            # CONFIRM which laser is on line 0
+
+[[lasers]]
+name = "Laser 2"
+role = "unknown"
+wavelength_nm = 0
+do_line = 1
+verified = false            # CONFIRM which laser is on line 1
+
+[sync]
+trigger_out_line = -1       # port0 line pulsed at exposure start for the camera; -1 = not wired
+trigger_out_pulse_s = 0.001
+trigger_in_line = ""        # e.g. "port2/line0" (PFI0); "" = not wired
+verified = false
