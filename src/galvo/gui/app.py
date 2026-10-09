@@ -1,7 +1,7 @@
 """Start the application.
 
 uv run galvo                       # simulated rig (default)
-uv run galvo --backend nidaqmx     # real rig (Windows, Phase 3)
+uv run galvo --backend nidaqmx     # real rig (Windows, NI-DAQmx)
 """
 
 from __future__ import annotations

@@ -1,6 +1,6 @@
 """Where the simulated beam lands in the image: the simulator's stand-in for the camera.
 
-On the real rig the camera shows where the 488 spot actually is. In simulation, this
+On the real rig the camera shows where the guide laser's spot actually is. In simulation, this
 module plays that role with a made-up "true" mapping from image pixels to galvo volts:
 slightly rotated, offset and not filling the full mirror range, as a real rig would be.
 Before calibration the simulated spot therefore misses the crosshair; after calibrating

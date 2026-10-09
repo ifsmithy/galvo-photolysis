@@ -6,13 +6,19 @@ Anything marked **UNVERIFIED** has not been measured on the real rig.
 
 ## The rig
 
-UV spot-photolysis on a commercial microscope (an **Olympus IX50** inverted microscope;
-the beam enters at the back via a 45° fold, per Ian, 2026-10-09). Two galvanometer
-mirrors steer the beam; the lasers are gated by TTL. Specified and built by Ian F Smith at
-UC Irvine. The 45° fold and the camera path probably mirror the image relative to the
+UV spot-photolysis on a commercial microscope: an **Olympus IX50** inverted microscope,
+with the beam entering at the back via a 45° fold. Two galvanometer mirrors steer the
+beam; the lasers are gated by TTL. I specified and built the rig at UC Irvine. The 45° fold and the camera path probably mirror the image relative to the
 wall test, which would explain the original software's `−x`; the first calibration on
 the microscope will show the true orientation.
 
+- **Optical path** (breadboard, confirmed 2026-10-09). The 405 nm beam passes a
+  variable ND filter, reflects off a kinematic mirror and then **reflects** off a
+  dichroic; the 445 nm beam passes its own variable ND filter and goes **straight
+  through** the dichroic. The ND filters set the power at the sample. The combined
+  beam enters the X/Y galvo scanner, passes a **focusing lens**, and a **45° mirror**
+  turns it into the back of the IX50. Diagram:
+  [`docs/images/optical-path.svg`](docs/images/optical-path.svg).
 - **Lasers.** Two diode laser modules: a **445 nm** guide laser and a **405 nm**
   uncaging laser, aligned to the same spot. (Remembered beforehand as a 488 nm guide;
   the module is stamped 445.) The guide laser excites Cal-520, so its spot shows in the
@@ -29,7 +35,7 @@ Identified from photos: **GVS002** two-axis scanner (motors labelled -X / -Y),
 
 ### Command wiring, USB-6001 to driver board J7
 
-Traced by hand by Ian, 2026-10-09.
+Traced by hand, 2026-10-09.
 
 | USB-6001 terminal | Driver board 1 J7 | Driver board 2 J7 |
 |---|---|---|
@@ -70,7 +76,8 @@ Two generic, unbranded diode laser modules:
   presumably +supply, ground and TTL; the TTL comes from P0.0. Runs on **12 V**: its
   supply wires are soldered to the 405's before reaching the power supply, so both
   lasers shared one 12 V feed in the working rig.
-- **405 nm**: a blue finned module with a rear fan and a separate constant-current
+- **405 nm**: a CivilLaser (Hangzhou, China) module, as named in Lock et al. (2016); a
+  blue finned body with a rear fan and a separate constant-current
   driver board (blue trimmer sets power). The board's input capacitor is rated 25 V,
   consistent with a **12 V** supply.
 
@@ -85,8 +92,9 @@ Neutral-density filters are believed to sit in front of the lasers (certainly th
 | 405 nm | **P0.2** | uncaging | line traced; wavelength believed, sticker unchecked |
 | none | P0.1 | unused | traced: nothing connected |
 
-Brett's saved settings put Laser 2 on line 1, which does not match the current wiring
-(the wiring may have changed since 2017).
+The original software's saved settings had the second laser on line 1; on the rig
+today it is wired to line 2 (P0.2) and line 1 is unused. The wiring may have changed
+since 2017.
 
 405 driver board connectors (from photo, traced 2026-10-09): **power in** at top left;
 the TTL control is a **thin wire hand-soldered** onto the board beside its LM358 op-amp
@@ -133,7 +141,8 @@ From the NI datasheet (`reference/NI_USB6001_Specs.pdf`):
 Consequences for the design:
 
 - Mirror movements can be hardware-timed (5 kS/s). **Laser gates cannot**: they are
-  software-timed, about 1 ms on Windows. Ian has confirmed 1 ms is fast enough.
+  software-timed, about 1 ms on Windows. That is well within a camera frame and fast
+  enough for this work.
 - Trigger-out to the camera can only be a software-timed digital line.
 - Trigger-in is read by polling a digital input (also about 1 ms).
 - Only 2 AO channels exist, and both drive the galvos.
@@ -158,7 +167,8 @@ Consequences for the design:
    matters for the uncalibrated default view and for making "right" mean right.
 2. **`[y, y, −x, −x]` double write.** Goes with `bufferSize = 2` and a commented-out
    sample-clock line. Without a clock the task writes on demand, so this is almost
-   certainly leftover. Not copied. To confirm in Phase 3.
+   certainly leftover. Not copied: the new backend writes one sample per channel and
+   drives the mirrors correctly on the rig (2026-10-09).
 3. **Pickle settings.** Replaced by TOML (rig) and JSON (calibration).
 4. **Global `ui` object.** Replaced by one-way module dependencies; see `CLAUDE.md`.
 5. **Silent "debug mode" when the DAQ library is missing.** Replaced by an explicit

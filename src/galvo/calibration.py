@@ -1,6 +1,6 @@
 """Calibration from image pixels to logical galvo volts.
 
-Procedure: send the 488 nm guide laser to a few known galvo positions, click where its
+Procedure: send the 445 nm guide laser to a few known galvo positions, click where its
 spot lights up the Cal-520 in the image, and fit an affine map from the clicks. Because
 an affine can rotate, scale, shear and mirror, any error in the rig's axis convention
 is absorbed here.

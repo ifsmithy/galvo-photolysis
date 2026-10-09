@@ -40,7 +40,8 @@ verified = true
 name = "405 nm"
 role = "uncage"
 wavelength_nm = 405         # believed; sticker not yet checked
-do_line = 2                 # P0.2, traced (Brett's saved setting of line 1 was wrong). P0.1 is unused.
+do_line = 2                 # P0.2, traced. The original software's saved setting was line 1;
+                            # the current wiring uses line 2, and P0.1 is unused.
 verified = true
 
 [sync]

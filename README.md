@@ -2,7 +2,7 @@
 
 Control software for a UV spot-photolysis rig: two galvanometer mirrors steer a laser
 beam to chosen points in a microscope field to photo-release (uncage) caged messengers,
-such as caged Ca²⁺, exactly where and when you want, while you image the response.
+such as caged IP₃, exactly where and when you want, while you image the response.
 
 ![The targeting window, scanning a region on the simulated rig](docs/images/targeting-window.png)
 
@@ -33,11 +33,31 @@ such as caged Ca²⁺, exactly where and when you want, while you image the resp
   code says so. It was built with AI assistance (Claude Code), which I directed and
   reviewed.
 
+## Used in published research
+
+The original rig, running Brett Settle's original software, delivered the spot
+photorelease of caged IP₃ in:
+
+- Lock JT, Parker I, Smith IF (2016). Communication of Ca²⁺ signals via tunneling
+  membrane nanotubes is mediated by transmission of inositol trisphosphate through gap
+  junctions. *Cell Calcium* 60:266–272.
+  [doi:10.1016/j.ceca.2016.06.004](https://doi.org/10.1016/j.ceca.2016.06.004)
+- Dickinson GD, Ellefsen KL, Dawson SP, Pearson JE, Parker I (2016). Hindered cytoplasmic
+  diffusion of inositol trisphosphate restricts its cellular range of action.
+  *Science Signaling* 9:ra108.
+  [doi:10.1126/scisignal.aag1625](https://doi.org/10.1126/scisignal.aag1625)
+
+This repository is a new implementation for the same rig. It was not used to collect
+the data in those papers.
+
 ## The rig
 
 An Olympus IX50 inverted microscope with a Thorlabs GVS002 two-axis galvo scanner,
 driven by an NI USB-6001, and two diode lasers gated by TTL: a 445 nm guide laser,
-whose spot is visible through Cal-520 fluorescence, and a 405 nm uncaging laser.
+whose spot is visible through Cal-520 fluorescence, and a 405 nm uncaging laser. A
+dichroic combines the two beams before the scanner.
+
+![Optical path on the breadboard](docs/images/optical-path.svg)
 
 ![Rig wiring](docs/images/wiring.svg)
 
@@ -45,7 +65,7 @@ whose spot is visible through Cal-520 fluorescence, and a 405 nm uncaging laser.
 marked as verified on the rig or not. [`config/rig.toml`](config/rig.toml) is the one
 file the software reads those facts from.
 
-## How it is built
+## Design
 
 - **One hardware interface, two implementations.** The rest of the code talks to "a
   DAQ" in volts and on/off lines; a simulator and the real NI-DAQmx driver both fit

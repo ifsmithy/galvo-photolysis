@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="400" viewBox="0 0 860 400" font-family="Helvetica, Arial, sans-serif" font-size="13">
+  <title>Optical path on the breadboard</title>
+  <desc>The 405 nm uncaging beam passes a variable ND filter, reflects off a kinematic mirror and then off a dichroic; the 445 nm guide beam passes its variable ND filter and goes straight through the dichroic. The combined beam is steered by the X/Y galvo scanner, passes a focusing lens and is turned by a 45-degree mirror into the back of an Olympus IX50.</desc>
+  <rect width="860" height="400" fill="#ffffff"/>
+
+  <!-- Beams -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M700 80 L420 80 L420 250" stroke="#7f3fbf" stroke-width="3"/>
+    <path d="M700 250 L420 250" stroke="#1f8fd8" stroke-width="3"/>
+    <path d="M420 250 L334 250" stroke="#5a4fcf" stroke-width="4"/>
+    <path d="M230 250 L90 250 L90 318" stroke="#5a4fcf" stroke-width="4"/>
+  </g>
+
+  <!-- 405 nm laser -->
+  <rect x="700" y="56" width="140" height="48" rx="6" fill="#eeedfe" stroke="#534ab7"/>
+  <text x="770" y="76" text-anchor="middle" font-weight="bold" fill="#3c3489">405 nm laser</text>
+  <text x="770" y="93" text-anchor="middle" font-size="11" fill="#534ab7">uncaging (CivilLaser)</text>
+
+  <!-- 445 nm laser -->
+  <rect x="700" y="226" width="140" height="48" rx="6" fill="#e6f1fb" stroke="#185fa5"/>
+  <text x="770" y="246" text-anchor="middle" font-weight="bold" fill="#0c447c">445 nm laser</text>
+  <text x="770" y="263" text-anchor="middle" font-size="11" fill="#185fa5">guide (aim)</text>
+
+  <!-- Variable ND filters -->
+  <rect x="574" y="64" width="12" height="32" fill="#888780"/>
+  <text x="580" y="122" text-anchor="middle" font-size="11" fill="#5f5e5a">variable ND filter</text>
+  <rect x="574" y="234" width="12" height="32" fill="#888780"/>
+  <text x="580" y="292" text-anchor="middle" font-size="11" fill="#5f5e5a">variable ND filter</text>
+
+  <!-- Kinematic mirror (45°) -->
+  <line x1="402" y1="98" x2="438" y2="62" stroke="#2c2c2a" stroke-width="5" stroke-linecap="round"/>
+  <text x="420" y="44" text-anchor="middle" font-size="12" fill="#2c2c2a">kinematic mirror</text>
+
+  <!-- Dichroic (45°) -->
+  <line x1="402" y1="268" x2="438" y2="232" stroke="#ba7517" stroke-width="5" stroke-linecap="round"/>
+  <text x="420" y="300" text-anchor="middle" font-size="12" fill="#854f0b">dichroic</text>
+  <text x="420" y="316" text-anchor="middle" font-size="11" fill="#854f0b">reflects 405, passes 445</text>
+
+  <!-- Galvo scanner -->
+  <rect x="230" y="214" width="104" height="72" rx="8" fill="#e1f5ee" stroke="#0f6e56"/>
+  <text x="282" y="244" text-anchor="middle" font-weight="bold" fill="#085041">X/Y galvos</text>
+  <text x="282" y="262" text-anchor="middle" font-size="11" fill="#0f6e56">Thorlabs GVS002</text>
+
+  <!-- Focusing lens (plano-convex) -->
+  <path d="M184 220 L184 280 Q164 250 184 220 Z" fill="#2f5f80" stroke="#1f3f55"/>
+  <text x="170" y="204" text-anchor="middle" font-size="12" fill="#1f3f55">focusing lens</text>
+
+  <!-- 45° fold mirror into the microscope -->
+  <line x1="72" y1="268" x2="108" y2="232" stroke="#2c2c2a" stroke-width="5" stroke-linecap="round"/>
+  <text x="90" y="204" text-anchor="middle" font-size="12" fill="#2c2c2a">45° mirror</text>
+
+  <!-- Microscope -->
+  <rect x="20" y="320" width="150" height="48" rx="8" fill="#f1efe8" stroke="#5f5e5a"/>
+  <text x="95" y="340" text-anchor="middle" font-weight="bold">Olympus IX50</text>
+  <text x="95" y="357" text-anchor="middle" font-size="11" fill="#5f5e5a">back of the microscope</text>
+
+  <text x="840" y="388" text-anchor="end" font-size="11" fill="#888780">Schematic, not to scale</text>
+</svg>

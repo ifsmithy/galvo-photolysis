@@ -36,7 +36,7 @@ src/galvo/
   patterns.py     Point / Line / Region targets -> ordered beam positions
   calibration.py  image pixels -> logical galvo volts, fitted from clicked points
   hw/             DaqBackend interface (channel volts + line masks only)
-                  SimulatedBackend (default), NIDAQmxBackend (Phase 3)
+                  SimulatedBackend (default), NIDAQmxBackend (real USB-6001)
   sequencer.py    plan_exposure (pure) -> execute (thin); safety interlocks
   explog.py       append-only JSONL exposure log
   session.py      one session at the rig: runs exposures on a worker thread (no Qt)
